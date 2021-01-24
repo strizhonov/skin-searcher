@@ -1,0 +1,30 @@
+sspring:
+  cache:
+    cache-names: itemPrices
+    caffeine:
+      expireAfterWrite: 120m
+
+url:
+  listing-steam: "https://steamcommunity.com/market/listings/730/%s/render?currency=1&start=%d&count=%d&format=json"
+  allSkins-hexa: "https://api.hexa.one/market/listings/730?key="
+  skin-steam: "https://steamcommunity.com/market/priceoverview/?appid=730&currency=1&market_hash_name=%s"
+  sticker-steam: "https://steamcommunity.com/market/priceoverview/?appid=730&currency=1&market_hash_name=Sticker | %s"
+  community-market-domain-name: "https://steamcommunity.com/market/"
+
+misc:
+  result-path: result/evaluated.txt
+  date-time-pattern: dd-MM-yyyy hh:mm:ss
+  steam-request-freeze-interval-ms: 12000
+  too-many-requests-default-freeze-interval-ms: 300000
+  item-info-life-time-hours: 24
+  illegal-url-characters-and-replacement: '{"&": "%26"}'
+  steam-fee-percentage: 13
+  forbidden-skin-name-parts: Souvenir,Sealed Graffiti,Case,Patch,Gloves,Knife,Music,Capsule,Sticker,Graffiti Box,Pin
+  sticker-names-with-comma: "Don''t Worry, I''m Pro" #split with semicolon. single quote needs escape
+
+business:
+  max-listing-price: 200
+  max-listing-overprice-coef: 1.5
+  bottom-price:
+    min: 50
+    max: 500

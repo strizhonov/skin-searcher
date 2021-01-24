@@ -1,0 +1,6 @@
+/log
+.idea
+/target
+**/*.iml
+credentials.properties
+result/
