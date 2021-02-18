@@ -6,7 +6,9 @@ import com.strizhonovapp.skin.service.SkinsPreparer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -19,10 +21,9 @@ public class SkinsPreparerImpl implements SkinsPreparer {
 
     @Override
     public Map<String, Skin> prepare(Set<Skin> skins) {
-        if (skins == null) {
-            return null;
-        }
-        return skins.stream()
+        return Optional.ofNullable(skins)
+                .orElse(new HashSet<>())
+                .stream()
                 .filter(skinSuitabilityChecker::isSkinSuit)
                 .collect(Collectors.toMap(Skin::getName, Function.identity()));
     }

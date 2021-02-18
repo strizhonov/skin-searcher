@@ -2,11 +2,7 @@ package com.strizhonovapp.skin.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.strizhonovapp.skin.config.SteamRequestSenderQualifier;
-import com.strizhonovapp.skin.model.AppliedSticker;
-import com.strizhonovapp.skin.model.MarketItem;
-import com.strizhonovapp.skin.model.Skin;
-import com.strizhonovapp.skin.model.SkinListing;
-import com.strizhonovapp.skin.model.Sticker;
+import com.strizhonovapp.skin.model.*;
 import com.strizhonovapp.skin.service.EntityEnhancer;
 import com.strizhonovapp.skin.service.MarketItemsHolder;
 import com.strizhonovapp.skin.service.RequestSender;
@@ -15,7 +11,6 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,7 +35,7 @@ public class EntityEnhancerImpl implements EntityEnhancer {
     @Override
     @SneakyThrows
     @Cacheable(value = "itemPrices", key = "{#item.name}")
-    public <T extends MarketItem> T enhancePriceAndVolumeInfo(@NonNull T item) {
+    public <T extends MarketItem> T enhancePriceAndVolumeInfo(T item) {
         String url = getUrlForMarketItemEnhancing(item);
         String json = steamRequestSender.send(url);
         return mapper
@@ -49,7 +44,7 @@ public class EntityEnhancerImpl implements EntityEnhancer {
     }
 
     @Override
-    public SkinListing enhanceSkinAndStickersPrices(@NonNull SkinListing skinListing) {
+    public SkinListing enhanceSkinAndStickersPrices(SkinListing skinListing) {
         enhanceSkinPrice(skinListing);
         enhanceStickersPrices(skinListing);
         return skinListing;

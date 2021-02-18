@@ -4,7 +4,6 @@ import com.strizhonovapp.skin.model.AppliedSticker;
 import com.strizhonovapp.skin.model.SkinListing;
 import com.strizhonovapp.skin.service.ListingEvaluator;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class ListingEvaluatorImpl implements ListingEvaluator {
     private double maxListingOverprice;
 
     @Override
-    public boolean isValuable(@NonNull SkinListing listing) {
+    public boolean isValuable(SkinListing listing) {
         return priceIsInAllowedBounds(listing)
                 && hasEnoughUpgrades(listing)
                 && isNotOverpriced(listing);

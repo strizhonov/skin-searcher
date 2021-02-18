@@ -1,18 +1,18 @@
 package com.strizhonovapp.skin.service.impl;
 
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UrlHelperImplTest {
 
     @ParameterizedTest
-    @NullAndEmptySource
+    @EmptySource
     void shouldReturnSameIfValueIsEmpty(String valueToFix) {
         UrlHelperImpl toTest = new UrlHelperImpl(new HashMap<>());
         String result = toTest.replaceIllegalUrlSymbols(valueToFix);
@@ -20,12 +20,10 @@ class UrlHelperImplTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"ANY", "SECOnd", "@@2212", "'%%'\""})
-    void shouldReturnSameValueIfUriHelperContainsEmptyMap(String valueToFix) {
+    @NullSource
+    void shouldThrowRuntimeExceptionIfValueIsNull(String valueToFix) {
         UrlHelperImpl toTest = new UrlHelperImpl(new HashMap<>());
-
-        String result = toTest.replaceIllegalUrlSymbols(valueToFix);
-        assertEquals(valueToFix, result);
+        assertThrows(RuntimeException.class, () -> toTest.replaceIllegalUrlSymbols(valueToFix));
     }
 
     @ParameterizedTest

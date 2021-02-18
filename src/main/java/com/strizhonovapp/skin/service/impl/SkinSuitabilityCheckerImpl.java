@@ -3,7 +3,6 @@ package com.strizhonovapp.skin.service.impl;
 import com.strizhonovapp.skin.model.Skin;
 import com.strizhonovapp.skin.service.SkinSuitabilityChecker;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -27,7 +26,7 @@ public class SkinSuitabilityCheckerImpl implements SkinSuitabilityChecker {
     private long maxBottomPrice;
 
     @Override
-    public boolean isSkinSuit(@NonNull Skin skin) {
+    public boolean isSkinSuit(Skin skin) {
         if (skin.getName() == null) {
             throw new IllegalStateException("Unable to process skin without name");
         }

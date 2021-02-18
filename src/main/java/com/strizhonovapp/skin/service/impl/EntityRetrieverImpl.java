@@ -12,7 +12,6 @@ import com.strizhonovapp.skin.service.RequestSender;
 import com.strizhonovapp.skin.service.UrlGenerator;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -36,7 +35,7 @@ public class EntityRetrieverImpl implements EntityRetriever {
 
     @Override
     @SneakyThrows
-    public Set<SkinListing> findListingBatch(@NonNull ListingsRequest request) {
+    public Set<SkinListing> findListingBatch(ListingsRequest request) {
         String url = urlGenerator.getUrlForListingFromSteam(request);
         String json = steamRequestSender.send(url);
         return mapper

@@ -5,7 +5,6 @@ import com.strizhonovapp.skin.service.UrlGenerator;
 import com.strizhonovapp.skin.service.UrlHelper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,7 +26,7 @@ public class UrlGeneratorImpl implements UrlGenerator {
     private final UrlHelper urlHelper;
 
     @Override
-    public String getUrlForListingFromSteam(@NonNull ListingsRequest request) {
+    public String getUrlForListingFromSteam(ListingsRequest request) {
         String skinName = request.getSkin().getName();
         String forUrlSkinName = urlHelper.replaceIllegalUrlSymbols(skinName);
         if (forUrlSkinName == null) {
@@ -42,13 +41,13 @@ public class UrlGeneratorImpl implements UrlGenerator {
     }
 
     @Override
-    public String getUrlForSkinInfoFromSteam(@NonNull String skinName) {
+    public String getUrlForSkinInfoFromSteam(String skinName) {
         String forUrlSkinName = urlHelper.replaceIllegalUrlSymbols(skinName);
         return String.format(skinUrlFromSteam, forUrlSkinName);
     }
 
     @Override
-    public String getUrlForStickerInfoFromSteam(@NonNull String stickerName) {
+    public String getUrlForStickerInfoFromSteam(String stickerName) {
         String forUrlStickerName = urlHelper.replaceIllegalUrlSymbols(stickerName);
         return String.format(stickerUrlFromSteam, forUrlStickerName);
     }

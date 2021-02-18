@@ -15,17 +15,19 @@ public class UrlHelperImpl implements UrlHelper {
     @Override
     public String replaceIllegalUrlSymbols(String toFix) {
         if (toFix == null) {
-            return null;
+            throw new NullPointerException("Unable to fix null url");
         }
-        String fixedValue = toFix;
+        StringBuilder fixedValue = new StringBuilder(toFix);
         for (Map.Entry<String, String> entry : illegalUrlCharactersAndReplacement.entrySet()) {
             String key = entry.getKey();
-            while (fixedValue.contains(key)) {
-                String value = entry.getValue();
-                fixedValue = fixedValue.replace(key, value);
+            String value = entry.getValue();
+
+            int keyIndex;
+            while ((keyIndex = fixedValue.indexOf(key)) > -1) {
+                fixedValue.replace(keyIndex, keyIndex + key.length(), value);
             }
         }
-        return fixedValue;
+        return fixedValue.toString();
     }
 
 }

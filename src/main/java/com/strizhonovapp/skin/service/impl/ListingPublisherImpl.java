@@ -4,7 +4,6 @@ import com.strizhonovapp.skin.model.SkinListing;
 import com.strizhonovapp.skin.service.ListingPublisher;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -27,7 +26,7 @@ public class ListingPublisherImpl implements ListingPublisher {
 
     @SneakyThrows
     @Override
-    public void publish(@NonNull SkinListing listing) {
+    public void publish(SkinListing listing) {
         byte[] bytes = getDataToWrite(listing);
         Path path = Paths.get(resultsPath);
         createIfNecessary(path);

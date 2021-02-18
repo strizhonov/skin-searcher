@@ -7,18 +7,15 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class StickersPreparerImplTest {
 
     private final StickersPreparerImpl toTest = new StickersPreparerImpl();
 
     @Test
-    void shouldReturnNullOnNullInput() {
-        assertNull(toTest.prepare(null));
+    void shouldReturnEmptyMapOnNullInput() {
+        assertTrue(toTest.prepare(null).isEmpty());
     }
 
     @Test

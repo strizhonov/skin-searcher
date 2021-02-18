@@ -49,8 +49,7 @@ public class CoreServiceImpl implements CoreService {
                 .collect(Collectors.toSet());
     }
 
-    private void processBatch(Set<SkinListing> batch, Skin clarified,
-                              int volume) {
+    private void processBatch(Set<SkinListing> batch, Skin clarified, int volume) {
         try {
             batch.stream()
                     .filter(listingEvaluator::isValuable)
